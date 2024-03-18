@@ -2,11 +2,10 @@ package inno.lab5.mapper;
 
 import inno.lab5.model.Agreement;
 import inno.lab5.model.Product;
+import inno.lab5.model.ProductClass;
 import inno.lab5.model.Register;
-import inno.lab5.service.AgreementService;
-import inno.lab5.service.RegisterService;
-import inno.lab5.service.ValidateService;
-import inno.lab5.service.impl.DatabaseProductService;
+import inno.lab5.service.impl.ProductClassServiceImpl;
+import inno.lab5.service.impl.ProductServiceImpl;
 import inno.lab5.web.model.request.AgreementRequest;
 import inno.lab5.web.model.request.RegisterRequest;
 import inno.lab5.web.model.response.AgreementResponse;
@@ -26,12 +25,16 @@ import java.util.stream.Collectors;
 public class ProductMapper {
 
     @Autowired
-    private final DatabaseProductService productService;
+    private final ProductServiceImpl productServiceImpl;
+    @Autowired
+    private final ProductClassServiceImpl productClassService;
 
     public Product requestToProduct(ProductRequest request){
 
+        //ProductClass productClass = productClassService.findById(request.getProductCodeId());
+
         if (request.getId() != null) {
-            Product product = productService.findById(request.getId());
+            Product product = productServiceImpl.findById(request.getId());
             List<Agreement> listAgr = new ArrayList<>();
             List<AgreementRequest> listAgrReq = request.getAgreements();
             for (AgreementRequest lst : listAgrReq) {

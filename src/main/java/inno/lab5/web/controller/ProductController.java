@@ -2,8 +2,7 @@ package inno.lab5.web.controller;
 
 import inno.lab5.mapper.ProductMapper;
 import inno.lab5.model.Product;
-import inno.lab5.service.ValidateService;
-import inno.lab5.service.impl.DatabaseProductService;
+import inno.lab5.service.impl.ProductServiceImpl;
 import inno.lab5.web.model.response.ProductResponse;
 import inno.lab5.web.model.request.ProductRequest;
 import jakarta.validation.Valid;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    private final DatabaseProductService databaseProductService;
+    private final ProductServiceImpl productServiceImpl;
     @Autowired
     private final ProductMapper productMapper;
 
@@ -34,7 +33,7 @@ public class ProductController {
 
     @PostMapping
     public  ResponseEntity<ProductResponse> create(@RequestBody @Valid ProductRequest request) throws ValidationException {
-        Product newProduct = databaseProductService.save(productMapper.requestToProduct(request));
+        Product newProduct = productServiceImpl.save(productMapper.requestToProduct(request));
         return ResponseEntity.status(HttpStatus.CREATED)
                         .body(productMapper.productToResponse(newProduct));
     }

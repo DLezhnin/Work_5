@@ -1,15 +1,17 @@
 package inno.lab5.model;
 
 import jakarta.persistence.*;
-import lombok.ToString;
+import lombok.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity(name = "tpp_ref_product_class")
 public class ProductClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long        internalid;
-    @OneToOne
-    @JoinColumn(name = "productClassCode")
-    @ToString.Exclude
     private String      value;
     private String      gbiCode;
     private String      name;

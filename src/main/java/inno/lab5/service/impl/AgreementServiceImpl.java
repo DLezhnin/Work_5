@@ -3,28 +3,21 @@ package inno.lab5.service.impl;
 import inno.lab5.exception.EntityNotFoundException;
 import inno.lab5.model.Agreement;
 import inno.lab5.model.Product;
-import inno.lab5.model.Register;
-import inno.lab5.repository.DatabaseAgreementRepository;
-import inno.lab5.repository.DatabaseRegisterRepository;
-import inno.lab5.service.AgreementService;
+import inno.lab5.repository.AgreementRepository;
 import inno.lab5.service.ProductService;
-import inno.lab5.web.model.request.AgreementRequest;
-import inno.lab5.web.model.response.AgreementResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
 @RequiredArgsConstructor
-public class DatabaseAgreementService implements AgreementService {
+public class AgreementServiceImpl implements inno.lab5.service.AgreementService {
 
     @Autowired
-    private final DatabaseAgreementRepository agreementRepository;
+    private final AgreementRepository agreementRepository;
     @Autowired
     private final ProductService databaseProductService;
 
