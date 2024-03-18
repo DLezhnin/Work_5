@@ -1,0 +1,16 @@
+spring:
+    main:
+      allow-circular-references: true
+    jpa:
+      generate-ddl: false
+    datasource:
+      url: jdbc:postgresql://localhost:5432/app_db
+      username: postgres
+      password: 2208
+      hikari:
+        schema: public
+        connection-ini-sql: CREATE SCHEMA IF NOT EXISTS public
+        connection-timeout: 10000
+
+
+
